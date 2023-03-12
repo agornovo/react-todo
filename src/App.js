@@ -12,7 +12,7 @@ function App() {
       <hr />
       <AddTodoForm onAddTodo={setNewTodo} />
       <p>{newTodo}</p>
-      <TodoList todoList={todoList}/>
+      <TodoList todoList={todoList} />
     </div>
   );
 }
