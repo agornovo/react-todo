@@ -4,6 +4,7 @@ import AddTodoForm from './AddTodoForm';
 
 function App() {
   const [todoList, setTodoList] = React.useState([]);
+  const [todoTitle, setTodoTitle] = React.useState('');
 
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
@@ -13,7 +14,7 @@ function App() {
     <div>
       <h1>Todo List</h1>
       <hr />
-      <AddTodoForm onAddTodo={addTodo} />
+      <AddTodoForm onAddTodo={addTodo} todoTitle={todoTitle} setTodoTitle={setTodoTitle} />
       <TodoList todoList={todoList} />
     </div>
   );

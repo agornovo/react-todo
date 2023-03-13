@@ -2,27 +2,23 @@ import React from 'react';
 
 function AddTodoForm(props) {
 
-    const [todoTitle, setTodoTitle] = React.useState('');
-
     const Todo = (title, id) => {
         return { title: title, id: id }
     }
 
-    React.useEffect(() => {
-        document.getElementById('todoTitle').value = todoTitle;
-    }, [todoTitle]);
-
     function handleTitleChange(event) {
         const newTodoTitle = event.target.value;
-        setTodoTitle(newTodoTitle);
+        props.setTodoTitle(newTodoTitle);
     }
 
     function handleAddTodo(event) {
         event.preventDefault();
-        const todoObject = Todo(todoTitle, Date.now());
-        props.onAddTodo(todoObject);
-        console.log(todoObject);
-        setTodoTitle('');
+        if (props.todoTitle !== '') {
+            const todoObject = Todo(props.todoTitle, Date.now());
+            props.onAddTodo(todoObject);
+            console.log(todoObject);
+            props.setTodoTitle('');
+        }
     }
 
     return (
