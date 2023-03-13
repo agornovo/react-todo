@@ -4,6 +4,14 @@ function AddTodoForm(props) {
 
     const [todoTitle, setTodoTitle] = React.useState('');
 
+    const Todo = (title, id) => {
+        return { title: title, id: id }
+    }
+
+    React.useEffect(() => {
+        document.getElementById('todoTitle').value = todoTitle;
+    }, [todoTitle]);
+
     function handleTitleChange(event) {
         const newTodoTitle = event.target.value;
         setTodoTitle(newTodoTitle);
@@ -11,9 +19,10 @@ function AddTodoForm(props) {
 
     function handleAddTodo(event) {
         event.preventDefault();
-        props.onAddTodo(todoTitle);
-        console.log(todoTitle);
-        event.target.reset();
+        const todoObject = Todo(todoTitle, Date.now());
+        props.onAddTodo(todoObject);
+        console.log(todoObject);
+        setTodoTitle('');
     }
 
     return (
