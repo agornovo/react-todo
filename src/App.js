@@ -21,12 +21,12 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <h1>Todo List</h1>
       <hr />
       <AddTodoForm onAddTodo={addTodo} todoTitle={todoTitle} setTodoTitle={setTodoTitle} />
       <TodoList todoList={todoList} />
-    </div>
+    </>
   );
 }
 
