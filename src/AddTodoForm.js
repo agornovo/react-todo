@@ -26,7 +26,8 @@ function AddTodoForm({ onAddTodo, todoTitle, setTodoTitle }) {
         <form onSubmit={handleAddTodo}>
             <InputWithLabel
                 todoTitle={todoTitle}
-                handleTitleChange={handleTitleChange}>
+                handleTitleChange={handleTitleChange}
+            >
                 <strong>Title:</strong>
             </InputWithLabel>
             <button>Add</button>
