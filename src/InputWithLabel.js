@@ -1,0 +1,13 @@
+import React from 'react';
+
+function InputWithLabel(props) {
+    return (
+        <>
+            <label htmlFor='todoTitle'>{props.label}</label>
+            <input id="todoTitle" name="title" value={props.todoTitle}
+                onChange={props.handleTitleChange} />
+        </>
+    );
+}
+
+export default InputWithLabel;
