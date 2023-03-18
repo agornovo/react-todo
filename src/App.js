@@ -24,7 +24,8 @@ function App() {
     <>
       <h1>Todo List</h1>
       <hr />
-      <AddTodoForm onAddTodo={addTodo} todoTitle={todoTitle} setTodoTitle={setTodoTitle} />
+      <AddTodoForm onAddTodo={addTodo} todoTitle={todoTitle}
+        setTodoTitle={setTodoTitle} />
       <TodoList todoList={todoList} />
     </>
   );
