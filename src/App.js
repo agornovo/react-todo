@@ -49,7 +49,11 @@ function App() {
       <hr />
       <AddTodoForm onAddTodo={addTodo} todoTitle={todoTitle}
         setTodoTitle={setTodoTitle} />
-      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      {isLoading ? (
+        <p>Loading ...</p>
+      ) : (
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      )}
     </>
   );
 }
