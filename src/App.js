@@ -82,6 +82,36 @@ function App() {
     }
   }
 
+  async function deleteTodoItem(id) {
+    try {
+      const options = {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+        }
+      }
+
+      const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/`
+        + id;
+
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        const message = `Error has ocurred:
+                               ${response.status}`;
+        throw new Error(message);
+      }
+
+      const dataResponse = await response.json();
+
+      return dataResponse.id;
+
+    } catch (error) {
+      console.log(error.message);
+      return null;
+    }
+  }
+
   React.useEffect(() => {
     fetchData();
   }, []);
@@ -98,6 +128,7 @@ function App() {
   }
 
   function removeTodo(id) {
+    deleteTodoItem(id);
     const updatedTodoList = todoList.filter(
       item => id !== item.id
     );
