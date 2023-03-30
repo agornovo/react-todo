@@ -42,6 +42,46 @@ function App() {
     }
   }
 
+  async function postTodoItem(todo) {
+    try {
+      const airtableData = {
+        fields: {
+          title: todo.title
+        }
+      };
+
+      const options = {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+        },
+        body: JSON.stringify(airtableData)
+      }
+
+      const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        const message = `Error has ocurred:
+                               ${response.status}`;
+        throw new Error(message);
+      }
+
+      const dataResponse = await response.json();
+
+      if (dataResponse.id !== null)
+        todo.id = dataResponse.id;
+
+      return todo;
+
+    } catch (error) {
+      console.log(error.message);
+      return todo;
+    }
+  }
+
   React.useEffect(() => {
     fetchData();
   }, []);
@@ -53,8 +93,8 @@ function App() {
 
   const [todoTitle, setTodoTitle] = React.useState('');
 
-  function addTodo(newTodo) {
-    setTodoList([...todoList, newTodo]);
+  async function addTodo(newTodo) {
+    setTodoList([...todoList, await postTodoItem(newTodo)]);
   }
 
   function removeTodo(id) {
