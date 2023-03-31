@@ -17,7 +17,6 @@ function AddTodoForm({ onAddTodo, todoTitle, setTodoTitle }) {
         if (todoTitle !== '') {
             const todoObject = Todo(Date.now(), todoTitle,);
             onAddTodo(todoObject);
-            console.log(todoObject);
             setTodoTitle('');
         }
     }
