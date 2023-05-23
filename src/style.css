@@ -1,3 +1,11 @@
-input, button {
+body {
+    color: black;
+    background-color: rgb(240, 231, 186);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+input,
+button {
     margin-left: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
